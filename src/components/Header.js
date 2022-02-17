@@ -9,7 +9,7 @@ function Header() {
             className="input input1"
             type="text"
             placeholder="Search"
-            autofocus
+            autoFocus
             style ={{backgroundColor :"black"}}
 
           />
