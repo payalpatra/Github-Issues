@@ -31,17 +31,20 @@ const IssueRow = ({ issue }) => {
   const userLoginName = issue.user.login;
   const createdTimeAgo = dayjs().to(dayjs(issue.created_at));
   const subtitle = `# ${issue.id} opened ${createdTimeAgo} by `;
-  const lName = issue.labels.map((label) => label.name ? label.name : "")
+  const lName = issue.labels.map((label) => label.name ? label.name : <></>)
   console.log(lName)
   return (
     <a href={issue.html_url}>
       <div className="issue-row">
         <div className="issue-icon">{issueIcon}</div>
         <div className="issue-text">
-          <div className="issue-title">{issue.title} {" "}
-            <span className="issue-bug">issue: bug report</span>
+          <div className="issue-title">{issue.title.slice(0, 90)} {" "}
+            {lName[0] ? <span className="issue-bug">issue: bug report</span> : ""}
             {" "}
-            <span className="issue-name">{lName[0]}</span>
+
+
+            {lName[0] ? <span className="issue-name">{lName[0]}</span> : ""}
+
           </div>
           <div className="issue-subtitle">
             {subtitle}
@@ -193,7 +196,10 @@ class App extends Component {
 
             <div className="issue_table_head_left">
               <p className="grey" style={{ fontWeight: '600', color: 'black' }} >1,195 Open</p>
-              <p className="grey" >6,326 Closed</p>
+              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check">
+                <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+              </svg>
+              <p className="grey" style= {{marginLeft: "0px" }}>6,326 Closed</p>
             </div>
 
 
